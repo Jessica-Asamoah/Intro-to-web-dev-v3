@@ -12,4 +12,4 @@ These were the requirements of the project.
   - A few paragraphs about you
   - A list of your recent jobs/schools/accomplishments
 
-link to project instructions: https://btholt.github.io/complete-intro-to-web-dev-v3/lessons/html/html-project
+Link to project instructions: https://btholt.github.io/complete-intro-to-web-dev-v3/lessons/html/html-project
