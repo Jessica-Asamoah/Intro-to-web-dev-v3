@@ -89,6 +89,10 @@ body {
         text-decoration: none;
         font-size: 30px;
         font-weight: bold;
-        font-family: "Futura";
+        font-family: "Raleway", sans-serif;;
         color: #666;
+}
+
+.section-link:hover {
+    text-decoration: underline;
 }
