@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Masters</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="brand-header">
+      <img
+        src="https://btholt.github.io/complete-intro-to-web-dev-v3/images/coffee_masters_logo.png"
+        alt="coffee masters logo"
+        class="brand-logo"
+      />
+      <h1 class="brand">Coffee Masters</h1>
+    </header>
+    <div class="info">
+      <section class="section-items">
+        <h4 class="section-title section-title-items">ITEMS</h4>
+        <ul class="list-items">
+          <li class="order-qty">1x</li>
+          <li class="order-type">Cappucino</li>
+          <li class="order-price">$3.35</li>
+          <li class="order-description">Light Foam</li>
+        </ul>
+        <ul class="list-items">
+          <li class="order-qty">1x</li>
+          <li class="order-type">Cappucino</li>
+          <li class="order-price">$3.85</li>
+          <li class="order-description description-1">Almond Milk</li>
+          <li class="order-description description-2">Double Espresso Shot</li>
+        </ul>
+        <ul class="list-items last-list-item">
+          <li class="order-qty">1x</li>
+          <li class="order-type">Croissant</li>
+          <li class="order-price">$2.45</li>
+          <li class="order-description">Butter</li>
+        </ul>
+      </section>
+      <div class="payment-inputs">
+        <section class="section-name">
+          <h4 class="section-title">NAME</h4>
+          <div class="order-name-group">
+            <label for="order-name" class="input-label">Name of order</label>
+            <input
+              type="text"
+              name="order-name"
+              id="order-name"
+              class="order-input"
+            />
+          </div>
+        </section>
+        <section class="section-payment">
+          <h4 class="section-title">PAYMENT</h4>
+          <div class="payment-name-group">
+            <label for="card-number" class="input-label">Card number</label>
+            <input
+              type="text"
+              name="card-number"
+              id="card-number"
+              class="order-input card-input"
+            />
+          </div>
+          <div class="payment-ccv-group">
+            <label for="ccv-number" class="input-label">CCV number</label>
+            <input
+              type="text"
+              name="ccv-number"
+              id="ccv-number"
+              class="order-input ccv-input"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="checkout">
+      <ul class="checkout-details">
+        <li class="checkout-values-1">Subtotal:</li>
+        <li class="checkout-pricing-1">$9.65</li>
+        <li class="checkout-values-2">Tax:</li>
+        <li class="checkout-pricing-2">$0.82</li>
+        <li class="checkout-values-3 total">Total:</li>
+        <li class="checkout-pricing-3 total">$10.47</li>
+      </ul>
+    </div>
+    <footer class="order-footer">
+      <div class="checkout-button">
+        <p class="place-order">Place order</p>
+      </div>
+    </footer>
+  </body>
+</html>

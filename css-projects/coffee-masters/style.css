@@ -1,0 +1,234 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EFEFEF;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.brand-header {
+    display: flex;
+    justify-content: center;
+    background-color: #43281C;
+    height: 80px;
+}
+
+.brand {
+    display: inline;
+    color: #FBF2C0;
+    font-size: 26px;
+    margin-top: 20px;
+}
+
+.brand-logo {
+    width: 30px;
+    height: 30px;
+    margin-top:22px;
+    margin-right: 5px;
+}
+
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 30px;
+    margin-top: 6px;
+    padding: 30px;
+}
+
+.order-qty {
+ grid-area: order-qty;
+}
+
+.order-type {
+    grid-area: order-type;
+    width: 50px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.order-price {
+    grid-area: order-price;
+    font-weight: 700;
+    
+}
+
+.order-description {
+    grid-area: order-description;
+    font-size: 16px;
+    color: #C0A48E;
+    margin-bottom: 20px;
+}
+
+.description-1 {
+    margin-bottom: 2px;
+}
+
+.description-2 {
+    grid-area: description-1;
+    margin-bottom: 20px;
+}
+
+.list-items {
+    border-bottom: 3px solid #DDB892;
+    display: grid;
+    /* grid-template-rows: 50px 50px 50px; */
+    grid-template-columns: 0.5fr 3fr 0.5fr;
+    grid-template-areas: 
+    "order-qty order-type order-price"
+    ". order-description ."
+    ". description-1 ."
+    ;
+    padding: 0;
+    text-align: left;
+}
+
+.last-list-item {
+    border: none;
+}
+
+
+.section-title {
+    margin: 0;
+    font-weight: normal;
+    color: #885A2D;
+    font-size: 18px;
+}
+
+.section-title-items {
+    margin-bottom: 20px;
+}
+
+.section-items {
+    padding: 30px 20px;
+    background-color: #EEE1D5;
+    border-radius: 5px;
+    font-size: 18px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+}
+
+.section-name {
+    padding: 30px 20px;
+    background-color: #EEE1D5;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+}
+
+.section-payment {
+    padding: 30px 20px;
+    background-color: #EEE1D5;
+    margin-top: 20px;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+}
+
+.order-name-group {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.order-input {
+    border-color: #885A2D;
+    padding: 8px;
+    border-width: 2.5px;
+    border-radius: 40px;
+    width: 100%;
+    background-color: #EEE1D5;
+    height: 45px;
+    margin-bottom: 8px;
+}
+
+.payment-name-group {
+    margin-top: 20px;
+    position: relative;
+}
+
+.payment-ccv-group {
+    margin-top: 20px;
+    position: relative;
+}
+.ccv-input {
+    width: 35%;
+    height: 45px;
+}
+
+.card-input {
+    margin-bottom: 0px;
+}
+
+.input-label {
+    background-color: #EEE1D5;
+    color: #885A2D;
+    font-size: 12px;
+    position: absolute;
+    left: 25px;
+    top: -7px;
+    padding: 0 2px;
+}
+
+.checkout-values-1{
+    grid-area: checkout-values-1;
+}
+.checkout-pricing-1{
+    grid-area: checkout-pricing-1;
+}
+.checkout-values-2{
+    grid-area: checkout-values-2;
+}
+.checkout-pricing-2{
+    grid-area: checkout-pricing-2;
+}
+.checkout-values-3{
+    grid-area: checkout-values-3;
+}
+.checkout-pricing-3{
+    grid-area: checkout-pricing-3;
+}
+
+
+.checkout {
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-details {
+    display: grid;
+    grid-template-rows: 45px 45px;
+    grid-template-columns: 1fr 2.8fr 2.8fr 1fr;
+    grid-template-areas: 
+    "checkout-values-1 . . checkout-pricing-1"
+    "checkout-values-2 . . checkout-pricing-2"
+    "checkout-values-3 . . checkout-pricing-3"
+    ;
+    margin-top: 30px;
+    font-size: 18px
+}
+
+.total {
+    font-weight: 700;
+}
+
+.order-footer {
+    padding: 30px;
+    margin-top: -10px;
+}
+
+.checkout-button {
+    background-color: #DEB993;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.place-order {
+    font-size: 17px;
+    font-weight: 500;
+    padding: 8px;
+}
