@@ -22,7 +22,8 @@ const temClear = function () {
 }
 
 const back = function () {
-    inputDisplay.value.substring(0, inputDisplay.value.length()-1)
+    currentInput = currentInput.slice(0, -1);
+    inputDisplay.value = currentInput;
 }
 
 const operation = function () {
@@ -91,6 +92,7 @@ buttons.forEach(button => {
             operation();
         } else if (buttonText === "←") {
             back();
+    
         } else if (buttonText === "C") {
             clear();
         }
