@@ -16,16 +16,23 @@ const clear = function () {
     inputDisplay.value = "0";
 }
 
+// It clears the current input and display without clearing the stored data
 const temClear = function () {
     currentInput = "";
     inputDisplay.value = "0";
 }
 
+// function that works like a backspace
 const back = function () {
-    currentInput = currentInput.slice(0, -1);
-    inputDisplay.value = currentInput;
+    if (currentInput === 1) {
+        inputDisplay.value = '0';
+    } else {
+        currentInput = currentInput.slice(0, -1);
+        inputDisplay.value = currentInput; 
+    }
 }
 
+// Conditional logic for mathematical operations
 const operation = function () {
     if (contentStorageOne !== "" && contentStorageTwo !== "" && operatorStorage === "+") {
         const result = parseInt(contentStorageOne) + parseInt(contentStorageTwo);
@@ -92,7 +99,6 @@ buttons.forEach(button => {
             operation();
         } else if (buttonText === "←") {
             back();
-    
         } else if (buttonText === "C") {
             clear();
         }
