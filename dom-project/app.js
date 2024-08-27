@@ -24,8 +24,9 @@ const temClear = function () {
 
 // function that works like a backspace
 const back = function () {
-    if (currentInput === 1) {
+    if (currentInput.length === 1) {
         inputDisplay.value = '0';
+        currentInput = ""
     } else {
         currentInput = currentInput.slice(0, -1);
         inputDisplay.value = currentInput; 
