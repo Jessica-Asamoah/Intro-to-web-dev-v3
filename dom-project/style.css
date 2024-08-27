@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.calculator-body {
+    width: 445px;
+    background-color: black;
+    display: grid;
+}
+
+.display {
+    background-color: black;
+    color: white;
+    text-align: right;
+    border: none;
+    height: 95px;
+    width: 445px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 45px;
+}
+
+.display:focus {
+    outline: none;
+}
+
+button {
+    border: none;
+    background-color: #D8D9DB;
+    font-size: 45px;
+}
+
+.first-row {
+    display: flex;
+    height: 115px;
+    justify-content: space-between;
+    margin-bottom: 0.5%;
+}
+
+.clear {
+    width: 49.60%;
+}
+
+.back {
+    width: 24.60%;
+}
+
+.division {
+    width: 24.35%;
+}
+
+.second-row {
+    display: flex;
+    height: 115px;
+    justify-content: space-between;
+    margin-bottom: 0.45%;
+}
+
+.seven {
+    width: 24.5%;
+}
+
+.eight {
+    width: 24.5%;
+}
+
+.nine {
+    width: 24.5%;
+}
+
+.multiply {
+    width: 24.5%;
+}
+
+.third-row {
+    display: flex;
+    height: 115px;
+    justify-content: space-between;
+    margin-bottom: 0.2%;
+}
+
+.four {
+    width: 24.5%;
+}
+
+.five {
+    width: 24.5%;
+}
+
+.six {
+    width: 24.5%;
+}
+
+.subtraction {
+    width: 24.5%;
+}
+
+.fourth-row {
+    display: flex;
+    height: 115px;
+    justify-content: space-between;
+    margin-bottom: 0.5%;
+}
+
+.one {
+    width: 24.5%;
+}
+
+.two {
+    width: 24.5%;
+}
+
+.three {
+    width: 24.5%;
+}
+
+.addition {
+   width: 24.5%;
+}
+
+.fifth-row {
+    display: flex;
+    height: 115px;
+    justify-content: space-between;
+}
+
+.zero {
+    width: 74.85%;
+}
+
+.equal {
+    width: 24.50%;
+}
+
+.orange-shade {
+    background-color: #DF974C;
+    color: white;
+}
