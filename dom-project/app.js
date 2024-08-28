@@ -83,7 +83,6 @@ buttons.forEach(button => {
             } else {
                 contentStorageTwo = currentInput;
             }
-            console.log(`${contentStorageOne}, ${contentStorageTwo}`)
         } else if (buttonText === "+") {
             operatorStorage = buttonText;
             temClear();
