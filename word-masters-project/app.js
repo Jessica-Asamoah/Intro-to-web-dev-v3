@@ -1,15 +1,22 @@
 const inputDivs = document.querySelectorAll(".input-div")
 const oneDiv = document.querySelector(".input-div")
+const loadingDiv = document.querySelector(".info-bar")
+const ANSWER_LENGTH = 5;
 const WORD_URL = "https://words.dev-apis.com/word-of-the-day"
 const VALID_WORD_URL = "https://words.dev-apis.com/validate-word"
 
 const divsPerRow = 5;
 const totalRows = 6;
 
+let done = false;
+let isLoading = true;
+
+// allows only alphabets as input
 function isLetter(letter) {
     return /^[a-zA-Z]$/.test(letter);
 }
 
+// to get the string from the divs
 function getInputFromRow(rowIndex) {
     const start = rowIndex * divsPerRow;
     const end = start + divsPerRow;
@@ -22,50 +29,57 @@ function getInputFromRow(rowIndex) {
     return result;
 }
 
+// every logic that needs to be done on the string enetered by the user
 function handleRetrievedString(str, rowIndex) {
-    async function findWord() {
+    async function findWord() {    
         const isLastRow = rowIndex === totalRows - 1;
-        const promise = await fetch(WORD_URL);
-        const processedResponse = await promise.json();
 
-        const validation = {
+        const validation = { // object be sent to POST
             "word": str
         };
-        const inputDivsArray = Array.from(inputDivs);
-        const start = rowIndex * divsPerRow;
-        const end = start + divsPerRow;
-        const rowDivs = inputDivsArray.slice(start, end);
-    
-        const response = await fetch(VALID_WORD_URL, {
+        isLoading = true;
+        setLoading(true);
+        const response = await fetch(VALID_WORD_URL, { // POST request for word validation
             method: "POST",
             body: JSON.stringify(validation)
         });
+        const inputDivsArray = Array.from(inputDivs);  // changes this from nodelist to an array so I can use the slice function
+        const start = rowIndex * divsPerRow;
+        const end = start + divsPerRow;
+        const rowDivs = inputDivsArray.slice(start, end);
+        // fetching the word of the day
+        const promise = await fetch(WORD_URL);
+        const processedResponse = await promise.json();
+        isLoading = false;
+        setLoading(false);
+        const word2 = processedResponse.word;
+        const map = makeMap(word2);
+       
         const validRespose = await response.json()
-        if (validRespose.validWord === true) {
-            console.log("Valid word let's move on")
-            for (let i = 0; i < str.length; i++) {
+        if (validRespose.validWord === true) { // to take these actions if the word is valid
+            for (let i = 0; i < str.length; i++) {  //  logic for correct characters in right position
                 const letter1 = str[i];
-                const word2 = processedResponse.word;
                 const divIndex = rowIndex * divsPerRow + i;
                 const oneDiv = inputDivs[divIndex];
-        
-                oneDiv.classList.remove('correct-position', 'wrong-position', 'neutral');
-        
-                if (word2.includes(letter1)) {
-                    if (letter1 === word2[i]) {
-                        console.log("right letter, right position")
-                        oneDiv.classList.add("correct-position")
-                    } else {
-                        console.log("right letter, wrong position")
-                        oneDiv.classList.add("wrong-position")
-                    }
-                } else {
-                    console.log("even worse")
-                    oneDiv.classList.add("neutral")
+                if (letter1 === word2[i]) {
+                    oneDiv.classList.add('correct-position')
+                    map[letter1]--; // to handle repeating characters
                 }
             } 
-        } else {
-            console.log ("Not a five letter word")
+            for (let i = 0; i < str.length; i++) {  // logic for correct characters but wrong positions
+                const letter1 = str[i];
+                const divIndex = rowIndex * divsPerRow + i;
+                const oneDiv = inputDivs[divIndex];
+                if (letter1 === word2[i]) {
+                    // do nothing
+                } else if (word2.includes(letter1) && map[letter1] > 0) {
+                    oneDiv.classList.add('wrong-position') 
+                    map[letter1]--;
+                } else {
+                    oneDiv.classList.add('neutral')
+                }
+            }
+        } else {  // handle invalid word
             rowDivs.forEach(inputDiv => inputDiv.classList.add('invalid-word'));
             rowDivs.forEach(inputDiv => {
                 inputDiv.addEventListener("animationend", () => {
@@ -73,11 +87,14 @@ function handleRetrievedString(str, rowIndex) {
                 }, { once: true });
             });
         }
-        
+        // logic to handle win or lose
         if (processedResponse.word === str) {
             alert(`You Win! The word of the day is: ${str}`)
+            document.querySelector('.game').classList.add("winner")
+            done = true;
         } else if (isLastRow === true) {
             alert(`You lose! The word of the day is ${processedResponse.word}`)
+            done = true;
         }
     }
     findWord()
@@ -87,6 +104,11 @@ inputDivs.forEach((inputDiv, index) => {
     inputDiv.addEventListener('keydown', function (event) {
         event.preventDefault();
         const isLastDivInRow = (index + 1) % divsPerRow === 0;
+
+        if (done) {
+            // do nothing
+            return;
+        }
 
         if(!isLetter(event.key)) {
             event.preventDefault();
@@ -101,14 +123,15 @@ inputDivs.forEach((inputDiv, index) => {
 
         if (event.key === 'Enter' && isLastDivInRow) {
             const currentRow = Math.floor(index / divsPerRow);
+            const rowInput = getInputFromRow(currentRow);
             const nextDivIndex = (currentRow + 1) * divsPerRow;
-            if (nextDivIndex < inputDivs.length) {
+            if (rowInput.length !== ANSWER_LENGTH) {
+                // Do nothing
+                return;
+            } else if (nextDivIndex < inputDivs.length) {
                 inputDivs[nextDivIndex].focus();
             }
-            const rowInput = getInputFromRow(currentRow);
             handleRetrievedString(rowInput, currentRow);
-            
-
         } else if (event.key === 'Backspace') {
             const prevDivIndex = index - 1;
             if (index <= inputDivs.length - 1) {
@@ -119,4 +142,20 @@ inputDivs.forEach((inputDiv, index) => {
 
     })
 })
-
+// for spinner
+function setLoading(isLoading) {
+    loadingDiv.classList.toggle('show', isLoading);
+}
+// to handle repetition of characters
+function makeMap (array) {
+    const obj = {};
+    for (i = 0; i < array.length; i++) {
+        const letter = array[i]
+        if (obj[letter]) {
+            obj[letter]++;
+        } else {
+            obj[letter] = 1;
+        }
+    }
+    return obj;
+}

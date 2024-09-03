@@ -20,8 +20,30 @@ body {
     color: #333333;
 }
 
+.spiral {
+    font-size: 40px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.info-bar {
+    visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show {
+    visibility: visible;
+}
+
 .word-container {
-    padding: 72px 100px;
+    padding: 30px 100px;
     display: grid;
     grid-template-columns: repeat(5, 55px);
     grid-gap: 15px;
@@ -40,7 +62,7 @@ body {
 }
 
 .correct-position {
-    background-color: #006400;
+    background-color: darkgreen;
     color: white;
 }
 .wrong-position {
@@ -74,4 +96,47 @@ body {
     outline: 0px solid transparent;
 }
 
+.winner {
+    animation: rainbow 4s infinite linear;
+}
+
+@keyframes rainbow {
+    100%,
+    0% {
+      color: rgb(255, 0, 0);
+    }
+    8% {
+      color: rgb(255, 127, 0);
+    }
+    16% {
+      color: rgb(255, 255, 0);
+    }
+    25% {
+      color: rgb(127, 255, 0);
+    }
+    33% {
+      color: rgb(0, 255, 0);
+    }
+    41% {
+      color: rgb(0, 255, 127);
+    }
+    50% {
+      color: rgb(0, 255, 255);
+    }
+    58% {
+      color: rgb(0, 127, 255);
+    }
+    66% {
+      color: rgb(0, 0, 255);
+    }
+    75% {
+      color: rgb(127, 0, 255);
+    }
+    83% {
+      color: rgb(255, 0, 255);
+    }
+    91% {
+      color: rgb(255, 0, 127);
+    }
+}
 
